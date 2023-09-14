@@ -36,6 +36,31 @@ covid_data_count |>
 ```
 
 1. Write code for a plot and describe what you observe?
+
+```{r}
+covid_data_count |>
+  filter(state == 'MA', race != 'Total') |>
+  ggplot(aes(x = date, y = Deaths, color = race)) + geom_line()
+```
+This plot shows the deaths count of each race over time in Massachusetts. On the plot, we can see that the deaths count of all the races rises over time with a jump during June and an increase in death rates from around December to January. Overall, the race with most deaths is "White", and the race with least death is "Asian".
+
+```{r}
+covid_data_count |>
+  filter(state == 'MA', race != 'Total') |>
+  ggplot(aes(x = date, y = (Deaths/population), color = race)) + geom_line()
+```
+This plot shows the deaths to population ratio of each race over time in Massachusetts. The plot shows that the ratio has similar general scheme to the previous plot as it also shows a jump in death proportion during June and an increase in rate after December. The difference is that the proportion is highest in "Black" for the majority of the time interval, and "Other" overtook the highest proportion after December. While "White" has highest death among all the races in the previous plot, it had a very high proportion of death but never the highest. "Asian" has the lowest deaths proportion.
+
+
 2. Are there any conclusions you can draw?
+
+By comparing the two plots, there are some interesting findings. Firstly, we may conclude that "Asian" are the most sucessful race to prevent deaths against the pandemicd. Secondly, we may conclude that "Black" suffered the most from the pandemic in the first half of the time interval but since then they did much better. We see this in a flatter slope of its line which indicate a slower increase in death proportion that might indicate a change in the strategy of self-protection or better access to treatment. Last but not least, the second plot shows a clear rate increase in deaths to population ratio in "Other" race, which might indicate that something went wrong.
+
 3. What were you not able to do due to not having the R knowledge?
+
+The data of "AIAN" and "NHPI" seems to be incomplete or wrong. I would like to know if R has any built-in functions to test for the data to reduce potential noice for graphic analysis.
+
 4. What other data would be useful to better understand this data?
+
+Data on proportion of deaths in hospital of each race and the proportion of deaths not treated in hospial of each race would be very useful to analyze and better understand what happened to the treatment of each race during the time interval.
+
